@@ -4,6 +4,7 @@ import ma.enset.billingservice.dto.InvoiceRequestDTO;
 import ma.enset.billingservice.dto.InvoiceResponseDTO;
 import ma.enset.billingservice.entities.Customer;
 import ma.enset.billingservice.entities.Invoice;
+import ma.enset.billingservice.exceptions.CustomerNotFoundException;
 import ma.enset.billingservice.mappers.InvoiceMapper;
 import ma.enset.billingservice.openfeign.CustomerRestClient;
 import ma.enset.billingservice.repositories.InvoiceRepository;
@@ -30,11 +31,17 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public InvoiceResponseDTO save(InvoiceRequestDTO invoiceRequestDTO) {
+        Customer customer = null;
+        try {
+            customer = customerRestClient.getCustomer(invoiceRequestDTO.getCustomerID());
+        }catch (Exception e){
+            throw new CustomerNotFoundException("Customer Not Found!");
+        }
         Invoice invoice = invoiceMapper.fromInvoiceRequestDTO(invoiceRequestDTO);
         invoice.setId(UUID.randomUUID().toString());
         invoice.setDate(new Date());
-        //TODO: check if customer exist
         Invoice savedInvoice = invoiceRepository.save(invoice);
+        savedInvoice.setCustomer(customer);
         return invoiceMapper.fromInvoice(savedInvoice);
     }
 

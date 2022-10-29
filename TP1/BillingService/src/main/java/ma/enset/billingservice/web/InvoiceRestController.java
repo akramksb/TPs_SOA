@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import ma.enset.billingservice.dto.InvoiceRequestDTO;
 import ma.enset.billingservice.dto.InvoiceResponseDTO;
 import ma.enset.billingservice.services.InvoiceService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +35,10 @@ public class InvoiceRestController {
     @PostMapping("/invoices")
     public InvoiceResponseDTO save(@RequestBody InvoiceRequestDTO invoiceRequestDTO){
         return invoiceService.save(invoiceRequestDTO);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> exceptionHandler(Exception e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
