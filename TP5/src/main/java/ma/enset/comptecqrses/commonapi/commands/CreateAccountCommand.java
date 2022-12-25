@@ -9,4 +9,12 @@ public class CreateAccountCommand extends BaseCommand<String>{
         this.initialBalance = initialBalance;
         this.currency = currency;
     }
+
+    public double getInitialBalance() {
+        return initialBalance;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
 }
