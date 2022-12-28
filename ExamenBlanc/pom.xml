@@ -8,10 +8,16 @@
 		<version>2.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ma.hassan</groupId>
+	<groupId>ma.enset</groupId>
 	<artifactId>contravention-cqrs-es</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<modules>
+		<module>core-api</module>
+		<module>vehicle</module>
+		<module>radar</module>
+		<module>contravention</module>
+	</modules>
 	<name>contravention-cqrs-es</name>
 	<description>contravention-cqrs-es</description>
 	<properties>

@@ -8,7 +8,7 @@
         <version>2.5.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ma.hassan</groupId>
+    <groupId>ma.enset</groupId>
     <artifactId>account-service-axon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>account-service-axon</name>

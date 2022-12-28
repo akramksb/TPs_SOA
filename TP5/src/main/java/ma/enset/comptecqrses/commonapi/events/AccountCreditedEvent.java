@@ -2,13 +2,13 @@ package ma.enset.comptecqrses.commonapi.events;
 
 import lombok.Getter;
 
-public class AccountCreatedEvent extends BaseEvent<String>{
-    @Getter private double initialBalance;
+public class AccountCreditedEvent extends BaseEvent<String>{
+    @Getter private double amount;
     @Getter private String currency;
 
-    public AccountCreatedEvent(String id, double initialBalance, String currency) {
+    public AccountCreditedEvent(String id, double amount, String currency) {
         super(id);
-        this.initialBalance = initialBalance;
+        this.amount = amount;
         this.currency = currency;
     }
 }
